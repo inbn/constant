@@ -1,0 +1,19 @@
+$button-color-positive: $color-blue-mid;
+$button-color-disabled: $color-grey-light;
+$button-color-assertive: $color-red-mid;
+
+.button {
+    color: $color-white;
+    background: $button-color-positive;
+    border: 1px solid darken($button-color-positive, 10);
+}
+
+.button--disabled,
+.button--disabled:hover,
+.button--disabled:focus,
+.button--disabled:active,
+.button[disabled] {
+    color: darken($button-color-disabled, 20);
+    background: $button-color-disabled;
+    border: 1px solid darken($button-color-disabled, 10);
+}

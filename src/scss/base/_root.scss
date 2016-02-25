@@ -1,0 +1,61 @@
+/*====================================*\
+
+    BASE - ROOT
+
+\*====================================*/
+
+/**
+ * High-, page-level styling.
+ *
+ * 1. Set the default `font-size` and `line-height` for the entire project,
+ *    sourced from our default variables. The `font-size` is calculated to exist
+ *    in ems, the `line-height` is calculated to exist unitlessly.
+ * 2. Force scrollbars to always be visible to prevent awkward ‘jumps’ when
+ *    navigating between pages that do/do not have enough content to produce
+ *    scrollbars naturally.
+ * 3. Ensure the page always fills at least the entire height of the viewport.
+ * 4. Prevent certain mobile browsers from automatically zooming fonts.
+ * 5. Fonts on OSX will look more consistent with other systems that do not
+ *    render text using sub-pixel anti-aliasing.
+ */
+html {
+    background: $background-color;
+    font-family: $font-family-body;
+    font-size: ($font-size-normal / 16px) * 1em; /* [1] */
+    line-height: 1.5; /* [1] */
+    color: $text-color;
+    overflow-y: scroll; /* [2] */
+    min-height: 100%; /* [3] */
+
+    //scss-lint:disable VendorPrefix, Indentation
+    -webkit-text-size-adjust: 100%; /* [4] */
+        -ms-text-size-adjust: 100%; /* [4] */
+    -moz-osx-font-smoothing: grayscale; /* [5] */
+     -webkit-font-smoothing: antialiased; /* [5] */
+    //scss-lint:enable VendorPrefix, Indentation
+}
+
+body {
+    font-family: $font-family-body;
+}
+
+
+/*------------------------------------*\
+    box-sizing
+\*------------------------------------*/
+
+/**
+ * Set the global `box-sizing` state to `border-box`.
+ *
+ * css-tricks.com/inheriting-box-sizing-probably-slightly-better-best-practice
+ * paulirish.com/2012/box-sizing-border-box-ftw
+ */
+html {
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}

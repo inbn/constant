@@ -14,7 +14,10 @@
     "babelify": "^7.2.0",
     "browserify": "^13.0.0",
     "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
     "gulp-notify": "^2.2.0",
+    "gulp-pixrem": "^1.0.0",
+    "gulp-ruby-sass": "^2.0.6",
     "gulp-util": "^3.0.7",
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.7.0"

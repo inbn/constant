@@ -1,6 +1,9 @@
 var source = require('vinyl-source-stream');
 var gulp = require('gulp');
 var gutil = require('gulp-util');
+var sass = require('gulp-ruby-sass');
+var autoprefixer = require('gulp-autoprefixer');
+var pixrem = require('gulp-pixrem');
 var browserify = require('browserify');
 var babelify = require('babelify');
 var watchify = require('watchify');
@@ -52,11 +55,15 @@ gulp.task('scripts', function() {
   return buildScript('main.js', false); // this will run once because we set watch to false
 });
 
-// gulp.task('default', ['images','styles','scripts','browser-sync'], function() {
-//   gulp.watch('css/**/*', ['styles']); // gulp watch for stylus changes
-//   return buildScript('main.js', true); // browserify watch for JS changes
-// });
+gulp.task('styles', function() {
+  return sass('src/scss/styles.scss', {style: 'compact', noCache : true})
+    .pipe(pixrem())
+    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+    .pipe(gulp.dest('build/css'))
+    // .pipe(livereload());
+});
 
-gulp.task('default', ['scripts'], function() {
+gulp.task('default', ['scripts', 'styles'], function() {
+  gulp.watch('src/scss/**/*', ['styles']); // gulp watch for stylus changes
   return buildScript('main.js', true); // browserify watch for JS changes
 });

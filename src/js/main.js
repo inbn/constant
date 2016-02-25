@@ -10,8 +10,8 @@ var Clock = class {
         this.parent = parent;
         this.timer = this.createTimer();
         this.titleInput = this.createTitleInput(this);
-        this.startButton = this.createButton('start', this.start, this);
-        this.stopButton = this.createButton('stop', this.stop, this);
+        this.startButton = this.createButton('Start', this.start, this);
+        this.stopButton = this.createButton('Stop', this.stop, this);
         this.offset;
         this.clock;
         this.interval = null;
@@ -29,6 +29,9 @@ var Clock = class {
         elem.appendChild(this.startButton);
         elem.appendChild(this.stopButton);
         // elem.appendChild(this.resetButton);
+
+        // Disable the stop button
+        this.stopButton.disabled = true;
 
         this.reset();
     }
@@ -51,7 +54,7 @@ var Clock = class {
     createButton(action, handler, scope) {
         var button = document.createElement('button');
         button.href = '#' + action;
-        button.className = 'clock__' + action + 'button';
+        button.className = 'clock__button--' + action + ' button';
         button.innerHTML = action;
         button.addEventListener('click', event => handler.call(scope));
         return button;
@@ -61,6 +64,7 @@ var Clock = class {
         var input = document.createElement('input');
         input.className = 'clock__title-input';
         input.placeholder = 'New timer';
+        input.type = 'text';
         input.addEventListener('keyup', event => this.updateTimerTitle.call(scope));
         return input;
     }
