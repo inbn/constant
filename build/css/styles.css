@@ -185,11 +185,13 @@ button { padding: 8px 16px; padding: 0.5rem 1rem; border: 1px; border-radius: 0.
 
 .button { color: #fff; background: #6699cc; border: 1px solid #4080bf; }
 .button:hover, .button:active { background: #4080bf; transition: background 0.3s ease; }
+.button.is-active { background: #ff8c42; border: 1px solid #ff6d0f; }
+.button.is-active:hover, .button.is-active:active { background: #ff6d0f; }
 
 .button--disabled, .button--disabled:hover, .button--disabled:focus, .button--disabled:active, .button[disabled] { color: #9b9b9b; background: #cecece; border: 1px solid #b5b5b5; }
 
-.clock { display: inline-block; text-align: center; border: 1px solid #cecece; border-radius: 0.5rem; padding: 8px 16px; padding: 0.5rem 1rem; }
+.clock { -webkit-flex-direction: column; -ms-flex-direction: column; flex-direction: column; text-align: center; border: 1px solid #cecece; border-radius: 0.5rem; padding: 8px 16px; padding: 0.5rem 1rem; }
 
-.clock__title-input { width: 100%; }
+.clock__title-input { display: block; width: 100%; }
 
 .clock__timer { display: block; padding: 8px 16px; padding: 0.5rem 1rem; width: 100%; }

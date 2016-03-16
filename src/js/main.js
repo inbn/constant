@@ -1,4 +1,5 @@
 require('flexibility');
+require('classlist-polyfill');
 
 // create an array to contain all timers
 var timers = [];
@@ -8,32 +9,34 @@ var timersContainer = document.getElementById('js-timers-container');
 var newTimerButton = document.getElementById('js-new-timer');
 
 var Clock = class {
-    constructor(parent, options) {
+    constructor(parent, props) {
+
+        // Props
+        this.props = props || {};
+        this.isActive = props.isActive || false; // whether or not to start the clock already running
+        this.delay = props.delay || 1000; // the amount of time in milliseconds after which to update the clock
+        this.isGlobal = props.isGlobal || false;
+        this.title = props.title || '';
+
+        // Elements
         this.parent = parent;
         this.timer = this.createTimer();
         this.titleInput = this.createTitleInput(this);
-        this.startButton = this.createButton('Start', this.start, this);
-        this.stopButton = this.createButton('Stop', this.stop, this);
+        this.startStopButton = this.createStartStopButton('Start', this.stopStart, this);
+        this.updateStartStopButton();
+
         this.offset;
         this.clock;
         this.interval = null;
         this.entries = [];
-        this.options = options || {};
-        this.delay = options.delay || 1000; // the amount of time in milliseconds after which to update the clock
-        this.isGlobal = options.isGlobal || false;
-        this.title = options.title || '';
 
         var elem = this.createElement();
 
         // Append elements
         elem.appendChild(this.titleInput);
         elem.appendChild(this.timer);
-        elem.appendChild(this.startButton);
-        elem.appendChild(this.stopButton);
-        // elem.appendChild(this.resetButton);
+        elem.appendChild(this.startStopButton);
 
-        // Disable the stop button
-        this.stopButton.disabled = true;
         this.titleInput.focus();
 
         this.reset();
@@ -54,13 +57,25 @@ var Clock = class {
         return span;
     }
 
-    createButton(action, handler, scope) {
+    createStartStopButton(action, handler, timer) {
         var button = document.createElement('button');
-        button.href = '#' + action;
-        button.className = 'clock__button--' + action + ' button';
-        button.innerHTML = action;
-        button.addEventListener('click', event => handler.call(scope));
+        button.classList.add('clock__button', 'button');
+        button.addEventListener('click', event => handler.call(timer));
         return button;
+    }
+
+    updateStartStopButton() {
+        if (this.isActive === true) {
+            this.startStopButton.innerHTML = 'Stop';
+            this.startStopButton.classList.toggle('is-active');
+        } else {
+            this.startStopButton.innerHTML = 'Start';
+            this.startStopButton.classList.remove('is-active');
+        }
+    }
+
+    stopStart() {
+        this.isActive ? this.stop() : this.start();
     }
 
     createTitleInput(scope) {
@@ -73,7 +88,7 @@ var Clock = class {
     }
 
     updateTimerTitle() {
-        this.options.title = this.titleInput.value;
+        this.props.title = this.titleInput.value;
     }
 
     parseTime(number) {
@@ -120,23 +135,23 @@ var Clock = class {
 
     start() {
         if (!this.interval) {
+            this.isActive = true;
             this.stopAllClocks();
-            this.offset   = Date.now();
+            this.offset = Date.now();
             this.interval = setInterval(this.update.bind(this), this.delay);
-            this.stopButton.disabled = false;
-            this.startButton.disabled = true;
             this.entries.push({ start: this.offset });
+            this.updateStartStopButton();
         }
     }
 
     stop() {
         if (this.interval) {
+            this.isActive = false;
             clearInterval(this.interval);
             this.interval = null;
-            this.startButton.disabled = false;
-            this.stopButton.disabled = true;
             this.entries[this.entries.length - 1].stop = Date.now();
             this.entries[this.entries.length - 1].duration = this.entries[this.entries.length - 1].stop - this.entries[this.entries.length - 1].start;
+            this.updateStartStopButton();
         }
     }
 

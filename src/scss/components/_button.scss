@@ -1,5 +1,6 @@
 $button-color-positive: $color-blue-mid;
 $button-color-disabled: $color-grey-light;
+$button-color-bright: $color-orange;
 $button-color-assertive: $color-red-mid;
 
 .button {
@@ -12,7 +13,18 @@ $button-color-assertive: $color-red-mid;
         background: darken($button-color-positive, 10);
         transition: background 0.3s ease;
     }
+
+    &.is-active {
+        background: $button-color-bright;
+        border: 1px solid darken($button-color-bright, 10);
+
+        &:hover,
+        &:active {
+            background: darken($button-color-bright, 10);
+        }
+    }
 }
+
 
 .button--disabled,
 .button--disabled:hover,
