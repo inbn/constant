@@ -1,14 +1,33 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html class="no-js" lang="">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
     <title>Chess Clock - the always on time tracker</title>
+
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
     <link href='https://fonts.googleapis.com/css?family=Karla:400,400italic,700,700italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="build/css/styles.css">
 </head>
 <body>
-    <div id="js-timers-container"></div>
-    <button id="js-new-timer" class="button">New Timer</button>
+    <header class="hero-header">
+        <div class="l-container l-container--full-width">
+            <h1 class="hero-header__title">constant</h1>
+            <h2 class="hero-header__sub-title">Time tracking for procrastinators</h2>
+        </div>
+    </header>
+    <div class="control-bar">
+        <div class="l-container l-container--full-width">
+            <button id="js-new-timer" class="button">New Timer</button>
+        </div>
+    </div>
+    <main class="l-container l-container--full-width">
+
+        <div id="js-timers-container"></div>
+    </main>
 
     <script type="text/javascript" src="build/js/main.js"></script>
 </body>

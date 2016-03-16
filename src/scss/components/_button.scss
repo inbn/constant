@@ -6,6 +6,12 @@ $button-color-assertive: $color-red-mid;
     color: $color-white;
     background: $button-color-positive;
     border: 1px solid darken($button-color-positive, 10);
+
+    &:hover,
+    &:active {
+        background: darken($button-color-positive, 10);
+        transition: background 0.3s ease;
+    }
 }
 
 .button--disabled,

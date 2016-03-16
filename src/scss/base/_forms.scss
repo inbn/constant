@@ -15,7 +15,8 @@ input[type="color"],
 textarea {
     padding: 0.5rem 0.75rem;
     line-height: 1.5;
-    border: 1px solid #ccc;
+    border: 0;
+    border-bottom: 2px solid #ccc;
 }
 
 /*
@@ -42,7 +43,8 @@ input[type="tel"]:focus,
 input[type="color"]:focus,
 textarea:focus {
     outline: 0;
-    box-shadow: 0 -4px 0 $color-blue-mid inset;
+    box-shadow: 0 -2px 0 $color-blue-mid inset;
+    border-bottom: 2px solid $color-blue-mid;
 }
 
 /*

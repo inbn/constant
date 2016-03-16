@@ -32,6 +32,7 @@ var Clock = class {
 
         // Disable the stop button
         this.stopButton.disabled = true;
+        this.titleInput.focus();
 
         this.reset();
     }
@@ -145,6 +146,24 @@ var Clock = class {
 
 }
 
-newTimerButton.onclick = function() {
-    timers.push(new Clock(timersContainer, { isGlobal: true }));
-};
+window.addEventListener('load', function load(event) {
+
+    window.removeEventListener("load", load, false); //remove listener, no longer needed
+
+    if ('localStorage' in window && window['localStorage'] !== null) {
+        timers = JSON.parse(localStorage['timers'] || null);
+
+        if (timers === null) {
+            timers = [];
+        }
+    }
+
+    if (timers.length == 0) {
+        timers.push(new Clock(timersContainer, { isGlobal: true }));
+    };
+
+    newTimerButton.onclick = function() {
+        timers.push(new Clock(timersContainer, { isGlobal: true }));
+    };
+});
+

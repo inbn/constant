@@ -141,7 +141,7 @@ html { box-sizing: border-box; }
 
 *, *::before, *::after { box-sizing: inherit; }
 
-input[type="text"], input[type="password"], input[type="email"], input[type="url"], input[type="date"], input[type="month"], input[type="time"], input[type="datetime"], input[type="datetime-local"], input[type="week"], input[type="number"], input[type="search"], input[type="tel"], input[type="color"], textarea { padding: 8px 12px; padding: 0.5rem 0.75rem; line-height: 1.5; border: 1px solid #ccc; }
+input[type="text"], input[type="password"], input[type="email"], input[type="url"], input[type="date"], input[type="month"], input[type="time"], input[type="datetime"], input[type="datetime-local"], input[type="week"], input[type="number"], input[type="search"], input[type="tel"], input[type="color"], textarea { padding: 8px 12px; padding: 0.5rem 0.75rem; line-height: 1.5; border: 0; border-bottom: 2px solid #ccc; }
 
 /*
 Need to separate out the :not() selector from the rest of the CSS 2.1 selectors
@@ -149,7 +149,7 @@ since IE8 won't execute CSS that contains a CSS3 selector.
 */
 input:not([type]) { padding: 8px 12px; padding: 0.5rem 0.75rem; }
 
-input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, textarea:focus { outline: 0; box-shadow: 0 -4px 0 #6699cc inset; }
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, input[type="url"]:focus, input[type="date"]:focus, input[type="month"]:focus, input[type="time"]:focus, input[type="datetime"]:focus, input[type="datetime-local"]:focus, input[type="week"]:focus, input[type="number"]:focus, input[type="search"]:focus, input[type="tel"]:focus, input[type="color"]:focus, textarea:focus { outline: 0; box-shadow: 0 -2px 0 #6699cc inset; border-bottom: 2px solid #6699cc; }
 
 /*
 Need to separate out the :not() selector from the rest of the CSS 2.1 selectors
@@ -165,11 +165,22 @@ input:not([type])[disabled] { cursor: not-allowed; background-color: #eaeded; co
 
 button { padding: 8px 16px; padding: 0.5rem 1rem; border: 1px; border-radius: 0.25rem; }
 
+.l-container--full-width { max-width: 1600px; margin-left: auto; margin-right: auto; }
+
+.control-bar { border-top: 1px solid #cecece; border-bottom: 1px solid #cecece; padding: 8px 16px; padding: 0.5rem 1rem; }
+
+.hero-header { background-color: #a23e48; color: #fff; }
+
+.hero-header__title { margin-top: 0; }
+
+.hero-header__sub-title { margin-bottom: 0; }
+
 .button { color: #fff; background: #6699cc; border: 1px solid #4080bf; }
+.button:hover, .button:active { background: #4080bf; transition: background 0.3s ease; }
 
 .button--disabled, .button--disabled:hover, .button--disabled:focus, .button--disabled:active, .button[disabled] { color: #9b9b9b; background: #cecece; border: 1px solid #b5b5b5; }
 
-.clock { width: 300px; text-align: center; padding: 8px; padding: 0.5rem; }
+.clock { display: inline-block; width: 300px; text-align: center; border: 1px solid #cecece; border-radius: 0.5rem; padding: 8px 16px; padding: 0.5rem 1rem; }
 
 .clock__title-input { width: 100%; }
 
