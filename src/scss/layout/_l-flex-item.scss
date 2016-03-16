@@ -1,0 +1,21 @@
+.l-flex-item {
+    @include display-flex;
+
+    width: 100%;
+
+    @media ($bp-small) {
+        width: 50%
+    }
+
+    @media ($bp-medium) {
+        width: 33.3%;
+    }
+
+    @media ($bp-x-large) {
+        width: 25%;
+    }
+
+    @media ($bp-max) {
+        width: 20%;
+    }
+}

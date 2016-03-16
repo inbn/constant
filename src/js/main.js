@@ -1,3 +1,5 @@
+require('flexibility');
+
 // create an array to contain all timers
 var timers = [];
 
@@ -40,7 +42,7 @@ var Clock = class {
     // Create the clock container element
     createElement() {
         var element = document.createElement('div');
-        element.className = 'clock';
+        element.className = 'clock l-flex-item';
         this.parent.appendChild(element);
         return element;
     }
@@ -150,6 +152,7 @@ window.addEventListener('load', function load(event) {
 
     window.removeEventListener("load", load, false); //remove listener, no longer needed
 
+    // TODO: Local storage stuff
     if ('localStorage' in window && window['localStorage'] !== null) {
         timers = JSON.parse(localStorage['timers'] || null);
 

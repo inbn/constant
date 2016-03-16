@@ -167,6 +167,14 @@ button { padding: 8px 16px; padding: 0.5rem 1rem; border: 1px; border-radius: 0.
 
 .l-container--full-width { max-width: 1600px; margin-left: auto; margin-right: auto; }
 
+.l-flex-container { -js-display: flex; display: -webkit-flex; display: -ms-flexbox; display: flex; -webkit-flex-wrap: wrap; -ms-flex-wrap: wrap; flex-wrap: wrap; }
+
+.l-flex-item { -js-display: flex; display: -webkit-flex; display: -ms-flexbox; display: flex; width: 100%; }
+@media (min-width: 600px) { .l-flex-item { width: 50%; } }
+@media (min-width: 800px) { .l-flex-item { width: 33.3%; } }
+@media (min-width: 1200px) { .l-flex-item { width: 25%; } }
+@media (min-width: 1600px) { .l-flex-item { width: 20%; } }
+
 .control-bar { border-top: 1px solid #cecece; border-bottom: 1px solid #cecece; padding: 8px 16px; padding: 0.5rem 1rem; }
 
 .hero-header { background-color: #a23e48; color: #fff; }
@@ -180,7 +188,7 @@ button { padding: 8px 16px; padding: 0.5rem 1rem; border: 1px; border-radius: 0.
 
 .button--disabled, .button--disabled:hover, .button--disabled:focus, .button--disabled:active, .button[disabled] { color: #9b9b9b; background: #cecece; border: 1px solid #b5b5b5; }
 
-.clock { display: inline-block; width: 300px; text-align: center; border: 1px solid #cecece; border-radius: 0.5rem; padding: 8px 16px; padding: 0.5rem 1rem; }
+.clock { display: inline-block; text-align: center; border: 1px solid #cecece; border-radius: 0.5rem; padding: 8px 16px; padding: 0.5rem 1rem; }
 
 .clock__title-input { width: 100%; }
 
