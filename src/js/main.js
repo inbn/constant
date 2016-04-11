@@ -20,6 +20,7 @@ var Clock = class {
 
         // Elements
         this.parent = parent;
+        this.wrapper = this.createWrapper();
         this.timer = this.createTimer();
         this.titleInput = this.createTitleInput(this);
         this.startStopButton = this.createStartStopButton('Start', this.stopStart, this);
@@ -29,6 +30,7 @@ var Clock = class {
         this.clock;
         this.interval = null;
         this.entries = [];
+
 
         var elem = this.createElement();
 
@@ -42,11 +44,19 @@ var Clock = class {
         this.reset();
     }
 
+    // Create the clock wrapper div
+    createWrapper() {
+        var element = document.createElement('div');
+        element.className = 'l-flex-item';
+        this.parent.appendChild(element);
+        return element;
+    }
+
     // Create the clock container element
     createElement() {
         var element = document.createElement('div');
-        element.className = 'clock l-flex-item';
-        this.parent.appendChild(element);
+        element.className = 'clock';
+        this.wrapper.appendChild(element);
         return element;
     }
 

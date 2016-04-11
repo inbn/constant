@@ -1,21 +1,84 @@
 .l-flex-item {
     @include display-flex;
 
+    flex-direction: column;
     width: 100%;
+    padding-top: 1rem;
+    padding-left: 1rem;
+    padding-bottom: 0;
+    padding-right: 1rem;
 
     @media ($bp-small) {
-        width: 50%
+        width: 50%;
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+
+        &:nth-child(odd) {
+            padding-left: 1rem;
+        }
+
+        &:nth-child(even) {
+            padding-right: 1rem;
+        }
     }
 
     @media ($bp-medium) {
         width: 33.3%;
+
+        &:nth-child(odd) {
+            padding-left: 0.5rem;
+        }
+
+        &:nth-child(even) {
+            padding-right: 0.5rem;
+        }
+
+        &:nth-child(3n-2) {
+            padding-left: 1rem;
+        }
+
+        &:nth-child(3n) {
+            padding-right: 1rem;
+        }
     }
 
     @media ($bp-x-large) {
         width: 25%;
+
+        &:nth-child(3n-2) {
+            padding-left: 0.5rem;
+        }
+
+        &:nth-child(3n) {
+            padding-right: 0.5rem;
+        }
+
+        &:nth-child(4n-3) {
+            padding-left: 1rem;
+        }
+
+        &:nth-child(4n) {
+            padding-right: 1rem;
+        }
     }
 
     @media ($bp-max) {
         width: 20%;
+
+        &:nth-child(4n-3) {
+            padding-left: 0.5rem;
+        }
+
+        &:nth-child(4n) {
+            padding-right: 0.5rem;
+        }
+
+        &:nth-child(5n-4) {
+            padding-left: 1rem;
+        }
+
+        &:nth-child(5n) {
+            padding-right: 1rem;
+        }
     }
 }
