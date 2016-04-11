@@ -6,40 +6,42 @@ var timers = [];
 
 // get elements
 var timersContainer = document.getElementById('js-timers-container');
+var masterTimerContainer = document.getElementById('js-master-clock-container');
 var newTimerButton = document.getElementById('js-new-timer');
 
 var Clock = class {
-    constructor(parent, props) {
-
+    constructor(props) {
         // Props
         this.props = props || {};
+        this.parent = props.parent || timersContainer;
         this.isActive = props.isActive || false; // whether or not to start the clock already running
         this.delay = props.delay || 1000; // the amount of time in milliseconds after which to update the clock
-        this.isGlobal = props.isGlobal || false;
+        this.isMaster = props.isMaster || false;
         this.title = props.title || '';
-
-        // Elements
-        this.parent = parent;
-        this.wrapper = this.createWrapper();
-        this.timer = this.createTimer();
-        this.titleInput = this.createTitleInput(this);
-        this.startStopButton = this.createStartStopButton('Start', this.stopStart, this);
-        this.updateStartStopButton();
 
         this.offset;
         this.clock;
         this.interval = null;
         this.entries = [];
 
+        // Elements
+        this.timer = this.createTimer();
 
-        var elem = this.createElement();
+        if (this.isMaster === true) {
+            this.parent.appendChild(this.timer);
+        } else {
+            this.wrapper = this.createWrapper();
+            this.titleInput = this.createTitleInput(this);
+            this.startStopButton = this.createStartStopButton(this.stopStart, this);
+            this.updateStartStopButton();
 
-        // Append elements
-        elem.appendChild(this.titleInput);
-        elem.appendChild(this.timer);
-        elem.appendChild(this.startStopButton);
-
-        this.titleInput.focus();
+            // Append elements
+            var elem = this.createElement();
+            elem.appendChild(this.titleInput);
+            elem.appendChild(this.timer);
+            elem.appendChild(this.startStopButton);
+            this.titleInput.focus();
+        }
 
         this.reset();
     }
@@ -56,7 +58,12 @@ var Clock = class {
     createElement() {
         var element = document.createElement('div');
         element.className = 'clock';
-        this.wrapper.appendChild(element);
+        if (this.isMaster) {
+            this.parent.appendChild(element);
+        } else {
+            this.wrapper.appendChild(element);
+        }
+
         return element;
     }
 
@@ -67,7 +74,7 @@ var Clock = class {
         return span;
     }
 
-    createStartStopButton(action, handler, timer) {
+    createStartStopButton(handler, timer) {
         var button = document.createElement('button');
         button.classList.add('clock__button', 'button');
         button.addEventListener('click', event => handler.call(timer));
@@ -145,12 +152,20 @@ var Clock = class {
 
     start() {
         if (!this.interval) {
+            // TODO: Probably don't need this twice
+            if (this.isMaster === false) {
+                this.stopAllClocks();
+            }
+
             this.isActive = true;
-            this.stopAllClocks();
             this.offset = Date.now();
             this.interval = setInterval(this.update.bind(this), this.delay);
             this.entries.push({ start: this.offset });
-            this.updateStartStopButton();
+
+            if (this.isMaster === false) {
+                this.updateStartStopButton();
+                timers[0].start();
+            }
         }
     }
 
@@ -166,16 +181,18 @@ var Clock = class {
     }
 
     stopAllClocks() {
-        for (var i = 0; i < timers.length; i++) {
+        var i = 0;
+        do {
+            i++;
             timers[i].stop();
-        }
+        } while (i < timers.length - 1);
     }
 
 }
 
 window.addEventListener('load', function load(event) {
 
-    window.removeEventListener("load", load, false); //remove listener, no longer needed
+    window.removeEventListener('load', load, false); //remove listener, no longer needed
 
     // TODO: Local storage stuff
     if ('localStorage' in window && window['localStorage'] !== null) {
@@ -186,12 +203,13 @@ window.addEventListener('load', function load(event) {
         }
     }
 
-    if (timers.length == 0) {
-        timers.push(new Clock(timersContainer, { isGlobal: true }));
+    if (timers.length === 0) {
+        timers.push(new Clock({ parent: masterTimerContainer, isMaster: true }));
     };
 
     newTimerButton.onclick = function() {
-        timers.push(new Clock(timersContainer, { isGlobal: true }));
+        timers.push(new Clock({ parent: timersContainer }));
+        console.log(timers);
     };
 });
 

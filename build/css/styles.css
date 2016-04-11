@@ -163,7 +163,7 @@ since IE8 won't execute CSS that contains a CSS3 selector.
 */
 input:not([type])[disabled] { cursor: not-allowed; background-color: #eaeded; color: #cad2d3; }
 
-button { padding: 8px 16px; padding: 0.5rem 1rem; border: 1px; border-radius: 0.25rem; }
+button { padding: 8px 16px; padding: 0.5rem 1rem; border: 1px; border-radius: 0.5rem; }
 
 .l-container--full-width { max-width: 1600px; margin-left: auto; margin-right: auto; }
 
@@ -206,6 +206,9 @@ button { padding: 8px 16px; padding: 0.5rem 1rem; border: 1px; border-radius: 0.
 
 .clock { text-align: center; border: 1px solid #cecece; border-radius: 0.5rem; padding: 8px 16px; padding: 0.5rem 1rem; }
 
+.clock--master { float: right; font-size: 20px; font-size: 1.25rem; padding: 0; }
+.clock--master .clock__timer { line-height: 1; padding: 10px 16px; padding: 0.625rem 1rem; }
+
 .clock__title-input { display: block; width: 100%; }
 
-.clock__timer { display: block; padding: 8px 16px; padding: 0.5rem 1rem; width: 100%; }
+.clock__timer { font-family: 'NovaMono', monospace; display: block; padding: 8px 16px; padding: 0.5rem 1rem; width: 100%; }
