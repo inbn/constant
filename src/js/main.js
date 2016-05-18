@@ -1,8 +1,6 @@
 require('flexibility');
 require('classlist-polyfill');
 
-import css from '../scss/styles.scss';
-
 // create an array to contain all timers
 var timers = [];
 

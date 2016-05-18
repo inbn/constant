@@ -32,8 +32,6 @@ module.exports = {
         test: /\.scss$/,
         include: path.join(__dirname, 'src'),
         loader: ExtractTextPlugin.extract('css!postcss-loader!sass')
-
-        // loaders: ['css', 'postcss-loader', 'sass']
       }
     ]
   }
