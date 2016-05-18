@@ -13,6 +13,27 @@
     <link rel="stylesheet" href="build/css/styles.css">
 </head>
 <body>
+    <svg style="position: absolute; width: 0; height: 0;" width="0" height="0" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <defs>
+            <symbol id="icon-bin" viewBox="0 0 32 32">
+                <title>bin</title>
+                <path class="path1" d="M4 10v20c0 1.1 0.9 2 2 2h18c1.1 0 2-0.9 2-2v-20h-22zM10 28h-2v-14h2v14zM14 28h-2v-14h2v14zM18 28h-2v-14h2v14zM22 28h-2v-14h2v14z"></path>
+                <path class="path2" d="M26.5 4h-6.5v-2.5c0-0.825-0.675-1.5-1.5-1.5h-7c-0.825 0-1.5 0.675-1.5 1.5v2.5h-6.5c-0.825 0-1.5 0.675-1.5 1.5v2.5h26v-2.5c0-0.825-0.675-1.5-1.5-1.5zM18 4h-6v-1.975h6v1.975z"></path>
+            </symbol>
+            <symbol id="icon-stop" viewBox="0 0 32 32">
+                <title>stop</title>
+                <path class="path1" d="M4 4h24v24h-24z"></path>
+            </symbol>
+            <symbol id="icon-pause" viewBox="0 0 32 32">
+                <title>pause</title>
+                <path class="path1" d="M4 4h10v24h-10zM18 4h10v24h-10z"></path>
+            </symbol>
+            <symbol id="icon-play" viewBox="0 0 32 32">
+                <title>play</title>
+                <path class="path1" d="M6 4l20 12-20 12z"></path>
+            </symbol>
+        </defs>
+    </svg>
     <header class="hero-header">
         <div class="l-container l-container--full-width">
             <h1 class="hero-header__title">constant</h1>
@@ -24,7 +45,6 @@
             <button id="js-new-timer" class="button">New Timer</button>
             <div id="js-master-clock-container" class="clock clock--master"></div>
         </div>
-
     </div>
     <main class="l-container l-container--full-width">
         <div id="js-timers-container" class="l-flex-container"></div>
