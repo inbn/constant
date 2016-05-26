@@ -6,7 +6,7 @@ module.exports = {
   devtool: 'source-map',
   entry: [
     'webpack-hot-middleware/client',
-    './src/js/main',
+    './src/js/constant',
     './src/scss/styles.scss'
   ],
   output: {
